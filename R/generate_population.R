@@ -1,0 +1,29 @@
+#' Generate a seed population of cells with mutations
+#'
+#' Create a digital "tissue", and return all the mutations
+#' that have arisen within that "tissue". The purpose is to create a mock cell
+#' population, over `n_div` rounds of cell division, starting with `n_start`
+#' cells, using a mutation frequency, `mut_freq` and mutation process,
+#' `mut_process`, across a reference DNA sequence, `ref`. At the end, you will
+#' end up with a starting population of cells that "grew" using these specific
+#' parameters. Then, this tissue can be mock "exposed" (or "expanded") to
+#' simulate a cellular exposure to a mutagen (or control samples).
+#'
+#' @param n_div The number of cell divisions to simulate.
+#' @param n_start The number of starting cells in the population.
+#' @param ref Reference genome; hg38, mm10, or a path to a FASTA file
+#' @param mut_freq The frequency of mutation to use in simulations.
+#' @param mut_process The overall mutation spectrum to simulate, provided as...?
+#' @export
+generate_population <- function(
+  n_div = 3,
+  n_start = 1,
+  ref = "hg38",
+  mut_freq = 0.1,
+  mut_process = ""
+) {
+  message("
+  Growing your cells. Please be patient - remember, in the lab this takes
+  months, and often doesn't even work!
+  ")
+}

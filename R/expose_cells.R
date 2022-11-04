@@ -20,6 +20,7 @@ expose_cells <- function(
 ) {
   message("
   Exposing your cells. Please be patient - remember, in the lab this takes
-  months and also generates a lot of hazardous material to deal with!
+  months... and also generates a lot of hazardous material to deal with!
   ")
+
 }

@@ -26,4 +26,16 @@ generate_population <- function(
   Growing your cells. Please be patient - remember, in the lab this takes
   months, and often doesn't even work!
   ")
+  # Make an empty list to store generations and cells
+  cells <- list()
+  # Make an empty data frame around which to structure simulations
+  seed_table <- data.frame(
+    chr = character(),
+    start = numeric(),
+    end = numeric(),
+    cell = character(),
+    originating_generation = numeric(),
+    mutation_timing = character()
+  )
+
 }

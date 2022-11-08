@@ -20,14 +20,12 @@ generate_population <- function(
   n_start = 1,
   ref = "hg38",
   mut_freq = 0.1,
-  mut_process = ""
+  mut_process = "" # matrix?
 ) {
   message("
   Growing your cells. Please be patient - remember, in the lab this takes
   months, and often doesn't even work!
   ")
-  # Make an empty list to store generations and cells
-  cells <- list()
   # Make an empty data frame around which to structure simulations
   seed_table <- data.frame(
     chr = character(),
@@ -37,5 +35,10 @@ generate_population <- function(
     originating_generation = numeric(),
     mutation_timing = character()
   )
-
+  # Make a list of cells the size of the starting generation...
+  seed_cells <- replicate(n = n_start, expr = seed_table, simplify = F)
+  # Make a list where each element represents a generation...
+  cells <- replicate(n = n_div, expr = list(), simplify = F)
+  names(cells) <- paste0("Generation_",paste0(1:n_div))
+  # Perform exponential doubling of seed population of cells...
 }

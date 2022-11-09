@@ -1,4 +1,6 @@
-# MutaSimuLateR
+# MutaSimuLATER
+
+A Mutation Simulator Linking All The Exposures in R
 
 A recurring question in the field of genetic toxicology has been, "how many mutations of a particular type would we expect to see, given a mutation frequency, mutational spectrum, and number of cells". This simulator attempts to answer that question and refine models for determining probabilites that a mutation X will occur given Y.
 

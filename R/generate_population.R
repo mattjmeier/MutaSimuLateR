@@ -46,3 +46,31 @@ generate_population <- function(
     # Frequency is used to calculate mean
     # How to best determine variability?
 }
+
+
+#' Get mutations from a sequence
+#'
+#' @param seq The reference sequence to draw mutations from. Valid options are
+#' hg38, mm10, or custom. If you specify custom, you must also provide a
+#' reference file to load, using \code{"ref_file"}.
+#' @param ref_file If you are using a custom genome, provide the path to
+#' a FASTA file for the genome.
+#' @param num_muts The number of mutations to draw.
+#' @import GRanges
+#'
+#' @export
+load_reference_genome <- function(seq = "test", ref_file = NULL, num_muts = 1) {
+  if (seq == "custom") {
+    stopifnot(!is.null(ref_file))
+  } else { if (seq == "hg38") {
+    # load hg38
+  } else { if (seq == "mm10") {
+  }
+
+  muts <-
+
+
+  # Pick num_muts
+  # Return data frame
+  return(muts)
+}

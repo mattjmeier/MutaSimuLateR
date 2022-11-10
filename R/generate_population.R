@@ -41,4 +41,8 @@ generate_population <- function(
   cells <- replicate(n = n_div, expr = list(), simplify = F)
   names(cells) <- paste0("Generation_",paste0(1:n_div))
   # Perform exponential doubling of seed population of cells...
+  # Quasi-poisson distribution to get # mutations to include per cell:
+    # Must be based on frequency
+    # Frequency is used to calculate mean
+    # How to best determine variability?
 }

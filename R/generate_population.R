@@ -14,6 +14,7 @@
 #' @param ref Reference genome; hg38, mm10, or a path to a FASTA file
 #' @param mut_freq The frequency of mutation to use in simulations.
 #' @param mut_process The overall mutation spectrum to simulate, provided as...?
+#' @import from ids random_id
 #' @export
 generate_population <- function(
   n_div = 3,
@@ -33,6 +34,7 @@ generate_population <- function(
     end = numeric(),
     cell = character(),
     originating_generation = numeric(),
+    parental_cells = character(),
     mutation_timing = character()
   )
   # Make a list of cells the size of the starting generation...
@@ -41,36 +43,14 @@ generate_population <- function(
   cells <- replicate(n = n_div, expr = list(), simplify = F)
   names(cells) <- paste0("Generation_",paste0(1:n_div))
   # Perform exponential doubling of seed population of cells...
-  # Quasi-poisson distribution to get # mutations to include per cell:
+  # Neg binomial distribution to get # mutations to include per cell:
     # Must be based on frequency
     # Frequency is used to calculate mean
     # How to best determine variability?
-}
-
-
-#' Get mutations from a sequence
-#'
-#' @param seq The reference sequence to draw mutations from. Valid options are
-#' hg38, mm10, or custom. If you specify custom, you must also provide a
-#' reference file to load, using \code{"ref_file"}.
-#' @param ref_file If you are using a custom genome, provide the path to
-#' a FASTA file for the genome.
-#' @param num_muts The number of mutations to draw.
-#' @import GRanges
-#'
-#' @export
-load_reference_genome <- function(seq = "test", ref_file = NULL, num_muts = 1) {
-  if (seq == "custom") {
-    stopifnot(!is.null(ref_file))
-  } else { if (seq == "hg38") {
-    # load hg38
-  } else { if (seq == "mm10") {
-  }
-
-  muts <-
-
-
-  # Pick num_muts
-  # Return data frame
-  return(muts)
+  # Once you get the number of mutations per sample, rbind the results of random_position() to a table, with as many rows as mutations selected
+  a <- random_position(chr = my_chr, chr.sizes = c(100,1000))
+  num_muts <- rnbinom(num_cells, mu = 4, size = 1)
+  # Lineage/Parental cells?
+  cells <- lapply()
+  return(cells)
 }

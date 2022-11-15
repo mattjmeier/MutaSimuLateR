@@ -23,6 +23,16 @@ generate_population <- function(
   mut_freq = 0.1,
   mut_process = "" # matrix?
 ) {
+
+  #### FOR TESTING PURPOSES - REMOVE FOR PRODUCTION
+  #################################################
+  n_div = 3
+  n_start = 1
+  ref = "hg38"
+  mut_freq = 0.1
+  #################################################
+
+
   message("
   Growing your cells. Please be patient - remember, in the lab this takes
   months, and often doesn't even work!
@@ -38,18 +48,37 @@ generate_population <- function(
     mutation_timing = character()
   )
   # Make a list of cells the size of the starting generation...
+  # This creates a list of empty data frames.
+  # If you are starting with 1 cell (often true),
+  # there will be a single element (empty data frame).
   seed_cells <- replicate(n = n_start, expr = seed_table, simplify = F)
+  # These data frames will each recieve a name, in the form of a UUID
+  names(seed_cells) <- lapply(seed_cells, uuid::UUIDgenerate)
+
   # Make a list where each element represents a generation...
   cells <- replicate(n = n_div, expr = list(), simplify = F)
   names(cells) <- paste0("Generation_",paste0(1:n_div))
+  # For the first generation of cells, add in the seed population
+  cells[[1]] <- seed_cells
   # Perform exponential doubling of seed population of cells...
+
+  # Use Function: make_mutation
+  # In the mean time, each row can be mocked up as such:
+  make_mutation <- function() {
+    return(c("chr1",10000,10000,"current_cell_ID"))
+
+    # Once you get the number of mutations per sample, rbind the results of random_position() to a table, with as many rows as mutations selected
+    # a <- random_position(chr = my_chr, chr.sizes = c(100,1000))
+    # num_muts <- rnbinom(num_cells, mu = 4, size = 1)
+  }
+
+  # Where you need to get the name for
+  mapply(function(x, i) paste(i, x), x, names(x))
   # Neg binomial distribution to get # mutations to include per cell:
     # Must be based on frequency
     # Frequency is used to calculate mean
     # How to best determine variability?
-  # Once you get the number of mutations per sample, rbind the results of random_position() to a table, with as many rows as mutations selected
-  a <- random_position(chr = my_chr, chr.sizes = c(100,1000))
-  num_muts <- rnbinom(num_cells, mu = 4, size = 1)
+
   # Lineage/Parental cells?
   cells <- lapply()
   return(cells)

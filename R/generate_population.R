@@ -7,7 +7,7 @@
 #' `mut_process`, across a reference DNA sequence, `ref`. At the end, you will
 #' end up with a starting population of cells that "grew" using these specific
 #' parameters. Then, this tissue can be mock "exposed" (or "expanded") to
-#' simulate a cellular exposure to a mutagen (or control samples).
+#' simulate a cellular exposure to a mutagen (or control samples). Extra description blah blah blah.
 #'
 #' @param n_div The number of cell divisions to simulate.
 #' @param n_start The number of starting cells in the population.
